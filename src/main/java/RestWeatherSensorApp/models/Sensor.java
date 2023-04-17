@@ -1,7 +1,6 @@
 package RestWeatherSensorApp.models;
 
 import com.sun.istack.NotNull;
-import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
