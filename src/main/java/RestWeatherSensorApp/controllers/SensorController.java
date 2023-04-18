@@ -3,6 +3,7 @@ package RestWeatherSensorApp.controllers;
 import RestWeatherSensorApp.dto.SensorDTO;
 import RestWeatherSensorApp.models.Sensor;
 import RestWeatherSensorApp.services.SensorService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,15 +18,21 @@ import javax.validation.Valid;
 public class SensorController {
 
     private final SensorService sensorService;
-
+    private final ModelMapper modelMapper;
     @Autowired
-    public SensorController(SensorService sensorService) {
+    public SensorController(SensorService sensorService, ModelMapper modelMapper) {
         this.sensorService = sensorService;
+        this.modelMapper = modelMapper;
     }
 
-    @PostMapping("/sensor/registration")
+    @PostMapping("/sensor/registration")  // TODO: 4/17/2023 Create validation
     public ResponseEntity<HttpStatus> sensorRegistration(@RequestBody @Valid SensorDTO sensorDTO,
                                                          BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()){
+
+        }
+
 
         sensorService.save(convertToSensor(sensorDTO));
         return ResponseEntity.ok(HttpStatus.OK);
@@ -33,8 +40,6 @@ public class SensorController {
 
 
     private Sensor convertToSensor(SensorDTO sensorDTO){
-        Sensor sensor = new Sensor();
-        sensor.setName(sensorDTO.getName());
-        return sensor;
+        return modelMapper.map(sensorDTO,Sensor.class);
     }
 }
