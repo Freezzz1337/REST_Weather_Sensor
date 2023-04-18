@@ -30,7 +30,7 @@ public class SensorController {
         this.sensorService = sensorService;
         this.modelMapper = modelMapper;
     }
-
+    //http://localhost:8080/sensor/registration
     @PostMapping("/sensor/registration")
     public ResponseEntity<HttpStatus> sensorRegistration(@RequestBody @Valid SensorDTO sensorDTO,
                                                          BindingResult bindingResult) {
@@ -56,7 +56,7 @@ public class SensorController {
     @ExceptionHandler
     private ResponseEntity<SensorErrorResponse> handleException(SensorCreateException ex) {
         SensorErrorResponse errorResponse = new SensorErrorResponse(
-                "Помика при створенні!",
+                "Помилка при створенні!",
                 System.currentTimeMillis()
         );
 
