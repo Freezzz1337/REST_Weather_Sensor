@@ -6,4 +6,3 @@ public class SensorCreateException extends RuntimeException{
         super(massage);
     }
 }
-    
