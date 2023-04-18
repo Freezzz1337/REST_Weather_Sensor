@@ -3,16 +3,19 @@ package RestWeatherSensorApp.controllers;
 import RestWeatherSensorApp.dto.SensorDTO;
 import RestWeatherSensorApp.models.Sensor;
 import RestWeatherSensorApp.services.SensorService;
+import RestWeatherSensorApp.util.SensorCreateException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 public class SensorController {
@@ -25,12 +28,22 @@ public class SensorController {
         this.modelMapper = modelMapper;
     }
 
-    @PostMapping("/sensor/registration")  // TODO: 4/17/2023 Create validation
+    @PostMapping("/sensor/registration")
     public ResponseEntity<HttpStatus> sensorRegistration(@RequestBody @Valid SensorDTO sensorDTO,
                                                          BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()){
+            StringBuilder errorMsg = new StringBuilder();
 
+            List<FieldError> errors = bindingResult.getFieldErrors();
+            for (FieldError error : errors) {
+                errorMsg.append(error.getField())
+                        .append(" - ")
+                        .append(error.getDefaultMessage())
+                        .append(";");
+            }
+
+            throw new SensorCreateException(errorMsg.toString());
         }
 
 
