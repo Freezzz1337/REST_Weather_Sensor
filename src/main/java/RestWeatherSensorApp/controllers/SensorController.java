@@ -5,6 +5,7 @@ import RestWeatherSensorApp.models.Sensor;
 import RestWeatherSensorApp.services.SensorService;
 import RestWeatherSensorApp.util.SensorCreateException;
 import RestWeatherSensorApp.util.SensorErrorResponse;
+import RestWeatherSensorApp.util.SensorWithThisNameAlreadyExists;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -61,6 +62,16 @@ public class SensorController {
         );
 
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler
+    private ResponseEntity<SensorErrorResponse> handleException(SensorWithThisNameAlreadyExists ex){
+        SensorErrorResponse errorResponse = new SensorErrorResponse(
+                "Сенсор з таким ім'ям вже існує!",
+                System.currentTimeMillis()
+        );
+
+        return new ResponseEntity<>(errorResponse,HttpStatus.NOT_FOUND);
     }
 
     private Sensor convertToSensor(SensorDTO sensorDTO) {

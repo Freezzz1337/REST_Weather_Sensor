@@ -3,6 +3,7 @@ package RestWeatherSensorApp.services;
 import RestWeatherSensorApp.models.Sensor;
 import RestWeatherSensorApp.repositories.SensorRepository;
 import RestWeatherSensorApp.util.SensorCreateException;
+import RestWeatherSensorApp.util.SensorWithThisNameAlreadyExists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +26,7 @@ public class SensorService {
         if (optional.isEmpty()) {
             sensorRepository.save(sensor);
         }else {
-            throw new SensorCreateException("Error!");
+            throw new SensorWithThisNameAlreadyExists();
         }
     }
 
