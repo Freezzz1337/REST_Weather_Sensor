@@ -57,7 +57,9 @@ public class SensorController {
     @ExceptionHandler
     private ResponseEntity<SensorErrorResponse> handleException(SensorCreateException ex) {
         SensorErrorResponse errorResponse = new SensorErrorResponse(
-                "Помилка при створенні!",
+                "Invalid values!" +
+                        " The name must be at least 3 and not more than 30 characters" +
+                        " The name shouldn't be empty",
                 System.currentTimeMillis()
         );
 
