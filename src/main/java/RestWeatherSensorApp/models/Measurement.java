@@ -25,7 +25,7 @@ public class Measurement {
 
     @NotEmpty
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "sensor", referencedColumnName = "id")
+    @JoinColumn(name = "sensor_name", referencedColumnName = "name")
     private Sensor sensor;
 
     @Column(name = "measurement_time")
