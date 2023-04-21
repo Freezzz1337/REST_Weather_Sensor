@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Temporal;
+import java.util.Date;
+
 
 @Service
 @Transactional(readOnly = true)
@@ -20,6 +21,7 @@ public class MeasurementService {
 
     @Transactional
     public void save(Measurement newMeasurement){
+        newMeasurement.setMeasurementTime(new Date());
         measurementRepository.save(newMeasurement);
     }
 

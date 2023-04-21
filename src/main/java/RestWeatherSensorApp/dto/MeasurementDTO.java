@@ -2,33 +2,20 @@ package RestWeatherSensorApp.dto;
 
 import RestWeatherSensorApp.models.Sensor;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.Size;
-import java.util.Date;
+import javax.validation.constraints.NotNull;
+
 
 public class MeasurementDTO {
-    @NotEmpty
-    @Size(min = -100,max = 100)
+    @NotNull
+    @Range(min = -100,max = 100)
     private double value;
-
-    @NotEmpty
+    @NotNull
     private boolean raining;
 
-    @NotEmpty
-    private Sensor sensor;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    Date measurementTime;
-
-    public Date getMeasurementTime() {
-        return measurementTime;
-    }
-
-    public void setMeasurementTime(Date measurementTime) {
-        this.measurementTime = measurementTime;
-    }
+    @NotNull
+    private int sensorId;
 
     public double getValue() {
         return value;
@@ -46,11 +33,4 @@ public class MeasurementDTO {
         this.raining = raining;
     }
 
-    public Sensor getSensor() {
-        return sensor;
-    }
-
-    public void setSensor(Sensor sensor) {
-        this.sensor = sensor;
-    }
 }

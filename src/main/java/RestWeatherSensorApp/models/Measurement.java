@@ -1,10 +1,10 @@
 package RestWeatherSensorApp.models;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -15,17 +15,16 @@ public class Measurement {
     @Column(name = "id")
     private int id;
 
-    @NotEmpty
-    @Size(min = -100, max = 100)
+    @Range(min = -100, max = 100)
     @Column(name = "value")
     private double value;
 
-    @NotEmpty
+    @NotNull
     @Column(name = "raining")
     private boolean raining;
 
     @NotEmpty
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "sensor", referencedColumnName = "id")
     private Sensor sensor;
 
@@ -42,6 +41,7 @@ public class Measurement {
         this.raining = raining;
         this.sensor = sensor;
     }
+
 
     public int getId() {
         return id;
@@ -73,5 +73,13 @@ public class Measurement {
 
     public void setSensor(Sensor sensor) {
         this.sensor = sensor;
+    }
+
+    public Date getMeasurementTime() {
+        return measurementTime;
+    }
+
+    public void setMeasurementTime(Date measurementTime) {
+        this.measurementTime = measurementTime;
     }
 }
