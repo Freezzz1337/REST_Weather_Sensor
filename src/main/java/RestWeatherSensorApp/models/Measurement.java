@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 @Table(name = "Measurement")
@@ -15,7 +16,7 @@ public class Measurement {
     private int id;
 
     @NotEmpty
-    @Size(min = -100,max = 100)
+    @Size(min = -100, max = 100)
     @Column(name = "value")
     private double value;
 
@@ -27,6 +28,10 @@ public class Measurement {
     @ManyToOne
     @JoinColumn(name = "sensor", referencedColumnName = "id")
     private Sensor sensor;
+
+    @Column(name = "measurement_time")
+    @Temporal(TemporalType.TIMESTAMP)
+    Date measurementTime;
 
     public Measurement() {
     }

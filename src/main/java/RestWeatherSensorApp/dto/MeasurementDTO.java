@@ -3,7 +3,10 @@ package RestWeatherSensorApp.dto;
 import RestWeatherSensorApp.models.Sensor;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 public class MeasurementDTO {
     @NotEmpty
@@ -15,6 +18,17 @@ public class MeasurementDTO {
 
     @NotEmpty
     private Sensor sensor;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    Date measurementTime;
+
+    public Date getMeasurementTime() {
+        return measurementTime;
+    }
+
+    public void setMeasurementTime(Date measurementTime) {
+        this.measurementTime = measurementTime;
+    }
 
     public double getValue() {
         return value;
