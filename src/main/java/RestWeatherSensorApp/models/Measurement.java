@@ -23,8 +23,7 @@ public class Measurement {
     private boolean raining;
 
     @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "id")
-    @Column(name = "sensor_id")
+    @JoinColumn(name = "sensor", referencedColumnName = "id")
     private Sensor sensor;
 
     public Measurement() {

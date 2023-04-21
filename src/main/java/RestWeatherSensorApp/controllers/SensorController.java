@@ -69,7 +69,7 @@ public class SensorController {
     @ExceptionHandler
     private ResponseEntity<SensorErrorResponse> handleException(SensorWithThisNameAlreadyExists ex){
         SensorErrorResponse errorResponse = new SensorErrorResponse(
-                "Сенсор з таким ім'ям вже існує!",
+                "Sensor with this name already exists!",
                 System.currentTimeMillis()
         );
 
