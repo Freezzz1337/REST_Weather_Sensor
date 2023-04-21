@@ -3,6 +3,7 @@ package RestWeatherSensorApp.models;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -22,6 +23,7 @@ public class Measurement {
     @Column(name = "raining")
     private boolean raining;
 
+    @NotEmpty
     @ManyToOne
     @JoinColumn(name = "sensor", referencedColumnName = "id")
     private Sensor sensor;

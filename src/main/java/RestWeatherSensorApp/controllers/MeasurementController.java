@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/measurements")
 public class MeasurementController {
 
-   
+
 }
