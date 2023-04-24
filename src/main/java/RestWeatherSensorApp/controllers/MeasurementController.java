@@ -12,22 +12,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.util.Date;
 
 @RestController
 @RequestMapping("/measurements")
 public class MeasurementController {
 
-    //http://localhost:8080/measurements/measuresAdd
-
-
+    //http://localhost:8080/measurements/add
 
 //    {
 //        "value":24.7,
 //            "raining":false,
 //            "sensor":{
-//        "name":"first sensore"
+//        "name":"first sensor"
 //    }
 //    }
 
@@ -43,9 +39,7 @@ public class MeasurementController {
 
     @PostMapping("/add")
     public ResponseEntity<HttpStatus> measuresAdd(@RequestBody MeasurementDTO measurementDTO) {
-
         measurementService.save(convertToMeasurement(measurementDTO));
-
         return ResponseEntity.ok(HttpStatus.OK);
     }
 

@@ -23,8 +23,7 @@ public class Measurement {
     @Column(name = "raining")
     private boolean raining;
 
-    @NotEmpty
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "sensor_name", referencedColumnName = "name")
     private Sensor sensor;
 
@@ -35,13 +34,21 @@ public class Measurement {
     public Measurement() {
     }
 
-    public Measurement(int id, double value, boolean raining, Sensor sensor) {
+    public Measurement(int id, double value, boolean raining, Sensor sensor, Date measurementTime) {
         this.id = id;
         this.value = value;
         this.raining = raining;
         this.sensor = sensor;
+        this.measurementTime = measurementTime;
     }
 
+    public Sensor getSensor() {
+        return sensor;
+    }
+
+    public void setSensor(Sensor sensor) {
+        this.sensor = sensor;
+    }
 
     public int getId() {
         return id;
@@ -67,13 +74,6 @@ public class Measurement {
         this.raining = raining;
     }
 
-    public Sensor getSensor() {
-        return sensor;
-    }
-
-    public void setSensor(Sensor sensor) {
-        this.sensor = sensor;
-    }
 
     public Date getMeasurementTime() {
         return measurementTime;
