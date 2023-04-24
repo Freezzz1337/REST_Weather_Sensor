@@ -4,7 +4,7 @@ import RestWeatherSensorApp.dto.SensorDTO;
 import RestWeatherSensorApp.models.Sensor;
 import RestWeatherSensorApp.services.SensorService;
 import RestWeatherSensorApp.util.SensorCreateException;
-import RestWeatherSensorApp.util.SensorErrorResponse;
+import RestWeatherSensorApp.util.SensorAndMeasurementErrorResponse;
 import RestWeatherSensorApp.util.SensorWithThisNameAlreadyExists;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,8 +55,8 @@ public class SensorController {
     }
 
     @ExceptionHandler
-    private ResponseEntity<SensorErrorResponse> handleException(SensorCreateException ex) {
-        SensorErrorResponse errorResponse = new SensorErrorResponse(
+    private ResponseEntity<SensorAndMeasurementErrorResponse> handleException(SensorCreateException ex) {
+        SensorAndMeasurementErrorResponse errorResponse = new SensorAndMeasurementErrorResponse(
                 "Invalid values!" +
                         " The name must be at least 3 and not more than 30 characters" +
                         " The name shouldn't be empty",
@@ -67,8 +67,8 @@ public class SensorController {
     }
 
     @ExceptionHandler
-    private ResponseEntity<SensorErrorResponse> handleException(SensorWithThisNameAlreadyExists ex){
-        SensorErrorResponse errorResponse = new SensorErrorResponse(
+    private ResponseEntity<SensorAndMeasurementErrorResponse> handleException(SensorWithThisNameAlreadyExists ex){
+        SensorAndMeasurementErrorResponse errorResponse = new SensorAndMeasurementErrorResponse(
                 "Sensor with this name already exists!",
                 System.currentTimeMillis()
         );

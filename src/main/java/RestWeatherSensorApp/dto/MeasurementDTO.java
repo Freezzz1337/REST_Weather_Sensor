@@ -1,7 +1,6 @@
 package RestWeatherSensorApp.dto;
 
 import RestWeatherSensorApp.models.Sensor;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotNull;

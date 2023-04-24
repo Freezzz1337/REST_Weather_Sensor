@@ -3,6 +3,7 @@ package RestWeatherSensorApp.services;
 import RestWeatherSensorApp.models.Measurement;
 import RestWeatherSensorApp.repositories.MeasurementRepository;
 import RestWeatherSensorApp.repositories.SensorRepository;
+import RestWeatherSensorApp.util.SensorNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +29,7 @@ public class MeasurementService {
             newMeasurement.setMeasurementTime(new Date());
             measurementRepository.save(newMeasurement);
         }else {
-
+            throw new SensorNotFoundException();
         }
     }
 
