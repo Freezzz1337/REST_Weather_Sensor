@@ -15,7 +15,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -65,7 +64,12 @@ public class MeasurementController {
 
     @GetMapping()
     public List<Measurement> getMeasurements(){
-        return measurementService.getAll();
+        return measurementService.findAll();
+    }
+
+    @GetMapping("/rainyDayCount")
+    public String rainyDayCount(){
+        return "Rainy days " + measurementService.getRainyDay();
     }
 
 
