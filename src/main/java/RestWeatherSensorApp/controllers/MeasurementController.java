@@ -15,6 +15,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -61,6 +62,12 @@ public class MeasurementController {
         measurementService.save(convertToMeasurement(measurementDTO));
         return ResponseEntity.ok(HttpStatus.OK);
     }
+
+    @GetMapping()
+    public List<Measurement> getMeasurements(){
+        return measurementService.getAll();
+    }
+
 
     @ExceptionHandler
     private ResponseEntity<SensorAndMeasurementErrorResponse> handleException(SensorNotFoundException ex) {
