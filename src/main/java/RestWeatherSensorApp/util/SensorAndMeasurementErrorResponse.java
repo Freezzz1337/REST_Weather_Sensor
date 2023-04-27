@@ -4,7 +4,6 @@ public class SensorAndMeasurementErrorResponse {
     private String message;
     private long timestamp;
 
-
     public SensorAndMeasurementErrorResponse(String message, long timestamp) {
         this.message = message;
         this.timestamp = timestamp;

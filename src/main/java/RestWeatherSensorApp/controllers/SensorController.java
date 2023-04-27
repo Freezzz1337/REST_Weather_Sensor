@@ -31,7 +31,6 @@ public class SensorController {
         this.sensorService = sensorService;
         this.modelMapper = modelMapper;
     }
-    //http://localhost:8080/sensor/registration
     @PostMapping("/sensor/registration")
     public ResponseEntity<HttpStatus> sensorRegistration(@RequestBody @Valid SensorDTO sensorDTO,
                                                          BindingResult bindingResult) {

@@ -1,6 +1,5 @@
 package RestWeatherSensorApp.models;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;

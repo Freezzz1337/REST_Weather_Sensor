@@ -21,17 +21,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/measurements")
 public class MeasurementController {
-
-    //http://localhost:8080/measurements/add
-
-//    {
-//        "value":24.7,
-//            "raining":false,
-//            "sensor":{
-//        "name":"first sensor"
-//    }
-//    }
-
     private final MeasurementService measurementService;
     private final ModelMapper modelMapper;
 
